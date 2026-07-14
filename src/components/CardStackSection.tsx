@@ -9,31 +9,31 @@ const cards = [
     id: 1,
     title: '01 // ENGINEER_PROFILE',
     content: '蔡璐阳（Sonny）｜9 年以上全栈交付经验。以前端架构为基座，协同 Node.js 与 Python 完成企业级 SaaS 从复杂业务流程到生产部署的完整交付。',
-    img: '/me/assets/real-z.png',
+    img: '/me/assets/real-z.webp',
   },
   {
     id: 2,
     title: '02 // SYSTEMS_AND_PERFORMANCE',
     content: '处理多租户权限、审批与对账等复杂业务，也处理高频实时数据与性能瓶颈：以混合渲染、缓存策略和虚拟滚动，将核心页面 TTI 降低 40%，万级列表渲染耗时降低 60%。',
-    img: '/me/assets/real-c.png',
+    img: '/me/assets/real-c.webp',
   },
   {
     id: 3,
     title: '03 // AGENT_ENGINEERING',
     content: '完成 LangGraph 编排、SSE 多轮交互、MCP 工具调用与 Chroma 混合检索 RAG 管线，并以 RAGAS 指标持续评估检索质量，让模型能力进入可控的业务流程。',
-    img: '/me/assets/real-pc.png',
+    img: '/me/assets/real-pc.webp',
   },
   {
     id: 4,
     title: '04 // DELIVERY_SYSTEM',
     content: '带领 6 人前端团队交付网页端、移动端与小程序共 5 个企业级项目。通过设计系统、TypeScript、测试与 CI/CD，把经验沉淀为可复用的工程体系。',
-    img: '/me/assets/real-pc.png',
+    img: '/me/assets/real-pc.webp',
   },
   {
     id: 5,
     title: '05 // OFFLINE_MODE',
     content: '工程之外：滑雪、羽毛球与两只猫。',
-    img: '/me/assets/real-cat.png',
+    img: '/me/assets/real-cat.webp',
   }
 ];
 
