@@ -80,7 +80,7 @@ export default function SkillsRadar() {
 
   return (
     <section className="bg-transparent py-[clamp(3.5rem,8vw,7rem)]">
-      <div className="page-shell grid gap-10 md:grid-cols-2 lg:grid-cols-[1fr_1.15fr_1fr] lg:items-center lg:gap-12 xl:gap-16">
+      <div className="page-shell grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:items-center lg:gap-12 xl:gap-16">
         <div className="md:col-span-2 lg:col-span-1">
           <p className="font-mono text-xs font-bold tracking-[0.1em] text-electric">ENGINEERING MAP</p>
           <h2 className="mt-2 md:mt-5 text-2xl md:text-4xl font-bold leading-[1.1] tracking-[-0.03em] md:text-[clamp(2rem,3vw,3.5rem)]">
