@@ -7,6 +7,7 @@ const skillsData = [
   {
     id: 'frontend',
     label: '前端架构',
+    score: 0.95,
     angle: -Math.PI / 2,
     content: {
       scope: 'React 18+ · Next.js App Router · TypeScript · Vue · TanStack Query · Zustand',
@@ -17,6 +18,7 @@ const skillsData = [
   {
     id: 'backend',
     label: '服务协同',
+    score: 0.82,
     angle: -Math.PI / 2 + (2 * Math.PI) / 5,
     content: {
       scope: 'Node.js · Next.js API Routes · FastAPI · PostgreSQL · REST · Docker · nginx',
@@ -27,6 +29,7 @@ const skillsData = [
   {
     id: 'ai',
     label: 'Agent 工程',
+    score: 0.85,
     angle: -Math.PI / 2 + (4 * Math.PI) / 5,
     content: {
       scope: 'LangChain · LangGraph · MCP · Function Calling · Chroma · SSE · RAGAS',
@@ -37,6 +40,7 @@ const skillsData = [
   {
     id: 'delivery',
     label: '工程交付',
+    score: 0.88,
     angle: -Math.PI / 2 + (6 * Math.PI) / 5,
     content: {
       scope: 'Design Token · 组件库 · Jest / Vitest · ESLint · GitLab CI/CD · Agile / Scrum',
@@ -47,6 +51,7 @@ const skillsData = [
   {
     id: 'business',
     label: '业务建模',
+    score: 0.75,
     angle: -Math.PI / 2 + (8 * Math.PI) / 5,
     content: {
       scope: '多租户 RBAC · 审批状态机 · 还款对账 · 金融数据可视化 · i18n',
@@ -69,20 +74,20 @@ export default function SkillsRadar() {
     y: center.y + Math.sin(angle) * radius * scale,
   });
   const evidencePath = skillsData.map((skill, index) => {
-    const point = getPoint(skill.angle, 0.78);
+    const point = getPoint(skill.angle, skill.score);
     return `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`;
   }).join(' ') + ' Z';
 
   return (
     <section className="bg-transparent py-[clamp(3.5rem,8vw,7rem)]">
-      <div className="page-shell grid gap-10 lg:grid-cols-[minmax(18rem,.78fr)_minmax(0,1.22fr)] lg:items-center lg:gap-16">
-        <div>
+      <div className="page-shell grid gap-10 md:grid-cols-2 lg:grid-cols-[1fr_1.15fr_1fr] lg:items-center lg:gap-12 xl:gap-16">
+        <div className="md:col-span-2 lg:col-span-1">
           <p className="font-mono text-xs font-bold tracking-[0.1em] text-electric">ENGINEERING MAP</p>
           <h2 className="mt-2 md:mt-5 text-2xl md:text-4xl font-bold leading-[1.1] tracking-[-0.03em] md:text-[clamp(2rem,3vw,3.5rem)]">
             <ScrambleText text="能力不是自评，" /><br />
             <ScrambleText text="而是可复核的工程证据。" delay={300} />
           </h2>
-          <p className="text-measure mt-5 text-base leading-8 text-muted">这张地图用于导航五类工程能力；每个节点展开后都对应实际系统、技术选择与量化结果。</p>
+
 
           <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="工程能力">
             {skillsData.map((skill) => {
@@ -103,9 +108,8 @@ export default function SkillsRadar() {
           </div>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-[minmax(16rem,.72fr)_minmax(0,1fr)] md:items-center">
-          <div className="mx-auto w-full max-w-sm">
-            <svg viewBox="0 0 400 400" className="h-auto w-full" aria-label="工程能力地图">
+        <div className="mx-auto w-full max-w-[20rem] sm:max-w-sm lg:max-w-[28rem]">
+          <svg viewBox="0 0 400 400" className="h-auto w-full" aria-label="工程能力地图">
               {[1, 0.72, 0.44].map((scale) => (
                 <polygon
                   key={scale}
@@ -125,7 +129,7 @@ export default function SkillsRadar() {
               })}
               <path d={evidencePath} fill="#9EBD4533" stroke="#181A1C" strokeWidth="2" />
               {skillsData.map((skill) => {
-                const point = getPoint(skill.angle, 0.78);
+                const point = getPoint(skill.angle, skill.score);
                 const labelPoint = getPoint(skill.angle, 1.12);
                 const isActive = activeSkill === skill.id;
                 return (
@@ -167,7 +171,6 @@ export default function SkillsRadar() {
               </motion.article>
             </AnimatePresence>
           </div>
-        </div>
       </div>
     </section>
   );

@@ -43,9 +43,10 @@ export default function RootLayout({
   return (
     <html
       lang="zh-CN"
+      suppressHydrationWarning
       className={`${geist.variable} ${geistMono.variable} ${notoSansSC.variable} ${longCang.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans text-obsidian bg-paper selection:bg-acid/40 overflow-x-hidden cursor-none">
+      <body suppressHydrationWarning className="min-h-full flex flex-col font-sans text-obsidian bg-paper selection:bg-acid/40 overflow-x-hidden cursor-none">
         <CustomCursor />
         <DynamicBackground />
         {children}

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
-import { Apple, ChevronLeft, ChevronRight, FileTerminal, LockKeyhole, RotateCw, X, Copy, Check } from 'lucide-react';
+import { Apple, ChevronLeft, ChevronRight, FileTerminal, LockKeyhole, RotateCw, X, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
@@ -27,7 +27,6 @@ export default function MacSimulator() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [frameState, setFrameState] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
   const [frameKey, setFrameKey] = useState(0);
-  const [copied, setCopied] = useState(false);
   const [minimumLoadingTimeMet, setMinimumLoadingTimeMet] = useState(false);
 
   useEffect(() => {
@@ -65,12 +64,6 @@ export default function MacSimulator() {
     setFrameKey((current) => current + 1);
   };
 
-  const copyUrl = (url: string) => {
-    navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-  };
-
   return (
     <section className="relative w-full bg-transparent py-[clamp(3.5rem,8vw,7rem)]">
       <div className="page-shell">
@@ -79,7 +72,6 @@ export default function MacSimulator() {
             <p className="font-mono text-xs font-bold tracking-[0.1em] text-electric">PERSONAL PROJECTS</p>
             <h2 className="mt-2 md:mt-5 text-2xl md:text-4xl font-bold leading-[1.1] tracking-[-0.03em] md:text-[clamp(2rem,3vw,3.5rem)]">在一台虚拟 Mac 里，直接体验真实项目。</h2>
           </div>
-          <p className="text-base leading-8 text-muted">点击桌面应用后，预览我的AI NATIVE项目。</p>
         </header>
 
         <div ref={containerRef} className="relative mx-auto aspect-[4/5] w-full max-w-[68rem] sm:aspect-[10/7]">
@@ -151,16 +143,16 @@ export default function MacSimulator() {
                         <button type="button" aria-label="刷新项目" onClick={reloadProject} className="grid h-7 w-7 place-items-center transition-colors hover:bg-obsidian/10"><RotateCw size={14} /></button>
                         <button
                           type="button"
-                          onClick={() => copyUrl(activeProject.href)}
-                          aria-label="复制链接"
-                          className="group/url relative flex h-7 min-w-0 flex-1 items-center justify-center gap-2 bg-[#e4e4e9] hover:bg-[#dcdce1] transition-colors px-3 font-mono text-[0.625rem] text-obsidian/75 cursor-copy"
+                          onClick={() => window.open(activeProject.href, '_blank')}
+                          aria-label="在新标签页中打开链接"
+                          className="group/url relative flex h-7 min-w-0 flex-1 items-center justify-center gap-2 bg-[#e4e4e9] hover:bg-[#dcdce1] transition-colors px-3 font-mono text-[0.625rem] text-obsidian/75 cursor-pointer"
                         >
                           <LockKeyhole size={12} className="shrink-0" />
                           <span className="truncate">{activeProject.href.replace('https://', '')}</span>
                           <div
                             className="absolute right-2 grid h-5 w-5 place-items-center rounded opacity-0 transition-all group-hover/url:opacity-100"
                           >
-                            {copied ? <Check size={12} className="text-[#27C93F]" /> : <Copy size={12} />}
+                            <ExternalLink size={12} />
                           </div>
                         </button>
                       </div>

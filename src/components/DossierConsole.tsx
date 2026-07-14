@@ -75,7 +75,7 @@ export default function DossierConsole() {
             <p className="font-mono text-xs font-bold tracking-[0.1em] text-electric">CAREER DOSSIER</p>
             <h2 className="mt-2 md:mt-5 max-w-3xl text-2xl md:text-4xl font-bold leading-[1.1] tracking-[-0.03em] md:text-[clamp(2rem,3vw,3.5rem)]">把复杂业务做成可维护的系统。</h2>
           </div>
-          <p className="max-w-md text-base leading-8 text-muted">从企业流程现代化，到实时数据、Agent 与工程体系建设；每一段经历都以可核验的工程结果呈现。</p>
+          <p className="max-w-md text-base leading-8 text-muted">从遗留系统现代化到高频实时数据，再到企业级 Agent 工程链落地。</p>
         </header>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(12rem,.42fr)_minmax(0,1fr)] lg:gap-14">

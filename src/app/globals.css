@@ -23,6 +23,10 @@
     text-rendering: optimizeLegibility;
   }
 
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+
   body {
     background-color: var(--color-paper);
     color: var(--color-obsidian);
