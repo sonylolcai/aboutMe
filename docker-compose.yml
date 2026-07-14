@@ -1,0 +1,12 @@
+services:
+  me-web:
+    build: .
+    container_name: homepage-me-web
+    restart: unless-stopped
+    networks:
+      - stone_proxy
+
+networks:
+  stone_proxy:
+    name: api-server_default
+    external: true
