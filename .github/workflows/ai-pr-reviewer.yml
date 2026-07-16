@@ -24,5 +24,6 @@ jobs:
           github_action_config.auto_review: "true"
           github_action_config.auto_describe: "true"
           github_action_config.auto_improve: "true"
+          OPENAI.API_BASE: "https://api.deepseek.com/v1"
           CONFIG.MODEL: "deepseek/deepseek-chat"
-          CONFIG.FALLBACK_MODELS: "deepseek/deepseek-chat"
+          CONFIG.FALLBACK_MODELS: "['deepseek/deepseek-chat']"
