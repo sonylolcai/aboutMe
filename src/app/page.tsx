@@ -12,6 +12,9 @@ import MacSimulator from '@/components/MacSimulator';
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
 
+  // Test comment for PR-Agent to review
+  console.log("Welcome to my homepage! This is a test log for AI code review.");
+
   return (
     <main className="w-full min-h-[100dvh] bg-transparent text-obsidian">
       
