@@ -1,32 +1,44 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { AnimatePresence, motion, useMotionValueEvent, useReducedMotion, useScroll, useSpring, useMotionValue } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useMotionValue,
+} from 'framer-motion';
 import Image from 'next/image';
 
 const cards = [
   {
     id: 1,
     title: '01 // ENGINEER_PROFILE',
-    content: '蔡璐阳（Sonny）｜9 年以上高级全栈工程师。以 React / Next.js 架构为基座，协同 Node.js 与 Python 构建高可靠的企业级 SaaS。深耕金融科技领域，主导过借贷审批、发卡系统与数字资产交易所等核心业务从架构设计到生产部署的完整交付。',
+    content:
+      '蔡璐阳（Sonny）｜9 年以上高级全栈工程师。以 React / Next.js 架构为基座，协同 Node.js 与 Python 构建高可靠的企业级 SaaS。深耕金融科技领域，主导过借贷审批、发卡系统与数字资产交易所等核心业务从架构设计到生产部署的完整交付。',
     img: '/me/assets/real-z.webp',
   },
   {
     id: 2,
     title: '02 // SYSTEMS_AND_PERFORMANCE',
-    content: '应对金融级高频交易与复杂多租户权限挑战：通过 Server Components 与多级缓存策略，将核心页面 TTI（可交互时间）降低 40%；针对密集型数据面板，落地虚拟滚动与流式渲染，让万级资产列表渲染耗时直降 60%。',
+    content:
+      '应对金融级高频交易与复杂多租户权限挑战：通过 Server Components 与多级缓存策略，将核心页面 TTI（可交互时间）降低 40%；针对密集型数据面板，落地虚拟滚动与流式渲染，让万级资产列表渲染耗时直降 60%。',
     img: '/me/assets/real-c.webp',
   },
   {
     id: 3,
     title: '03 // AGENT_ENGINEERING',
-    content: '不止于模型调用，更专注于 AI 的企业级落地：基于 LangGraph 与 MCP 工具链编排多轮流式交互，构建基于混合检索的 RAG 管线。将 AI 问答与自然语言操作精准、可控地接入复杂的业务流程中。',
+    content:
+      '不止于模型调用，更专注于 AI 的企业级落地：基于 LangGraph 与 MCP 工具链编排多轮流式交互，构建基于混合检索的 RAG 管线。将 AI 问答与自然语言操作精准、可控地接入复杂的业务流程中。',
     img: '/me/assets/real-pc.webp',
   },
   {
     id: 4,
     title: '04 // DELIVERY_SYSTEM',
-    content: '作为前端负责人，带领 6 人团队成功交付网页与移动端共 5 个企业级项目。通过从零搭建组件库、推行 TypeScript 严格模式与 CI/CD 自动化体系，使跨项目开发效率跃升 60%，线上 Bug 率大幅下降 70%。',
+    content:
+      '作为前端负责人，带领 6 人团队成功交付网页与移动端共 5 个企业级项目。通过从零搭建组件库、推行 TypeScript 严格模式与 CI/CD 自动化体系，使跨项目开发效率跃升 60%，线上 Bug 率大幅下降 70%。',
     img: '/me/assets/real-snow.webp',
   },
   {
@@ -34,7 +46,7 @@ const cards = [
     title: '05 // OFFLINE_MODE',
     content: 'System Offline：工程世界之外，我是羽毛球狂热爱好者，以及两只猫的专属铲屎官。',
     img: '/me/assets/real-cat.webp',
-  }
+  },
 ];
 
 type ProfileCard = (typeof cards)[number];
@@ -66,7 +78,7 @@ function CardPanel({ card, stackIndex }: { card: ProfileCard; stackIndex: number
   const reduceMotion = useReducedMotion();
   const paper = getPaperLayout(card);
   const stackPose = getStackPose(card, stackIndex);
-  
+
   // 3D Tilt Effect
   const rotateX = useSpring(useMotionValue(0), { damping: 30, stiffness: 300 });
   const rotateY = useSpring(useMotionValue(0), { damping: 30, stiffness: 300 });
@@ -75,8 +87,8 @@ function CardPanel({ card, stackIndex }: { card: ProfileCard; stackIndex: number
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    rotateY.set(((x / rect.width) - 0.5) * 15);
-    rotateX.set(((y / rect.height) - 0.5) * -15);
+    rotateY.set((x / rect.width - 0.5) * 15);
+    rotateX.set((y / rect.height - 0.5) * -15);
   };
 
   const handleMouseLeave = () => {
@@ -85,19 +97,25 @@ function CardPanel({ card, stackIndex }: { card: ProfileCard; stackIndex: number
   };
 
   const content = (
-    <motion.div 
-      className="relative flex flex-col gap-4 sm:gap-5 w-full h-full"
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+    <motion.div
+      className="relative flex h-full w-full flex-col gap-4 sm:gap-5"
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
     >
-      <h1 className="text-[1.45rem] font-bold leading-tight text-obsidian sm:text-[1.8rem] tracking-tight">
+      <h1 className="text-obsidian text-[1.45rem] leading-tight font-bold tracking-tight sm:text-[1.8rem]">
         {card.title}
       </h1>
-      <div className="h-px w-full bg-obsidian/45" style={{ transform: "translateZ(20px)" }}></div>
-      <p className="text-measure text-[1.05rem] leading-[1.8] text-obsidian whitespace-pre-wrap sm:text-[1.15rem] sm:leading-[1.82]" style={{ transform: "translateZ(30px)" }}>{card.content}</p>
+      <div className="bg-obsidian/45 h-px w-full" style={{ transform: 'translateZ(20px)' }}></div>
+      <p
+        className="text-measure text-obsidian text-[1.05rem] leading-[1.8] whitespace-pre-wrap sm:text-[1.15rem] sm:leading-[1.82]"
+        style={{ transform: 'translateZ(30px)' }}
+      >
+        {card.content}
+      </p>
     </motion.div>
   );
 
-  const className = "note-paper relative col-start-1 row-start-1 z-10 flex items-center p-6 sm:p-8 md:p-10 brutal-shadow-hover";
+  const className =
+    'note-paper relative col-start-1 row-start-1 z-10 flex items-center p-6 sm:p-8 md:p-10 brutal-shadow-hover';
 
   return (
     <motion.div
@@ -109,8 +127,20 @@ function CardPanel({ card, stackIndex }: { card: ProfileCard; stackIndex: number
         rotate: reduceMotion ? stackPose.rotate : stackPose.rotate + 0.6,
         zIndex: stackPose.zIndex,
       }}
-      animate={{ x: stackPose.x, y: stackPose.y, opacity: 1, rotate: stackPose.rotate, zIndex: stackPose.zIndex }}
-      exit={{ x: stackPose.x, y: reduceMotion ? stackPose.y : '100%', opacity: 0, rotate: stackPose.rotate, zIndex: stackPose.zIndex }}
+      animate={{
+        x: stackPose.x,
+        y: stackPose.y,
+        opacity: 1,
+        rotate: stackPose.rotate,
+        zIndex: stackPose.zIndex,
+      }}
+      exit={{
+        x: stackPose.x,
+        y: reduceMotion ? stackPose.y : '100%',
+        opacity: 0,
+        rotate: stackPose.rotate,
+        zIndex: stackPose.zIndex,
+      }}
       transition={{ duration: reduceMotion ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }}
       style={{
         width: paper.width,
@@ -138,7 +168,7 @@ export default function CardStackSection() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end end']
+    offset: ['start start', 'end end'],
   });
 
   const startTopCardExit = () => {
@@ -161,7 +191,7 @@ export default function CardStackSection() {
     }
   };
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     // The shorter stage makes each wheel movement advance the dossier promptly.
     const index = Math.min(Math.floor(latest * 5), 4);
     const nextCardCount = index + 1;
@@ -187,35 +217,35 @@ export default function CardStackSection() {
   const visibleCards = cards.slice(0, renderedCardCount);
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-[500dvh] bg-transparent">
+    <section ref={containerRef} className="relative min-h-[500dvh] w-full bg-transparent">
       <div className="sticky top-0 h-[100dvh] overflow-hidden">
         <div className="page-shell grid h-full grid-rows-[minmax(13rem,.8fr)_auto] gap-5 py-5 md:grid-cols-[5fr_7fr] md:grid-rows-1 md:gap-10 md:py-8">
           <div className="relative flex min-h-0 items-center justify-center">
             <div className="relative aspect-[4/5] w-[min(15rem,72vw)] md:w-[min(26rem,100%)]">
-            {cards.map((card, idx) => (
-              <div
-                key={`img-${card.id}`}
-                className="absolute inset-0"
-                style={{
-                  opacity: activeIndex === idx ? 1 : 0,
-                  zIndex: activeIndex === idx ? 10 : 0,
-                }}
-              >
-                {/* Fallback to a placeholder svg if img errors or is missing, though we expect it to exist */}
-                <Image 
-                  src={card.img} 
-                  alt={idx === 4 ? '滑雪与猫的生活合成图占位素材' : `${card.title} 技术主题插画`} 
-                  fill 
-                  style={{ objectFit: 'contain' }}
-                  sizes="(min-width: 768px) 33vw, 72vw"
-                  preload={idx === 0}
-                />
-              </div>
-            ))}
+              {cards.map((card, idx) => (
+                <div
+                  key={`img-${card.id}`}
+                  className="absolute inset-0"
+                  style={{
+                    opacity: activeIndex === idx ? 1 : 0,
+                    zIndex: activeIndex === idx ? 10 : 0,
+                  }}
+                >
+                  {/* Fallback to a placeholder svg if img errors or is missing, though we expect it to exist */}
+                  <Image
+                    src={card.img}
+                    alt={idx === 4 ? '滑雪与猫的生活合成图占位素材' : `${card.title} 技术主题插画`}
+                    fill
+                    style={{ objectFit: 'contain' }}
+                    sizes="(min-width: 768px) 33vw, 72vw"
+                    preload={idx === 0}
+                  />
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="grid w-full self-start perspective-1000 md:self-center">
+          <div className="perspective-1000 grid w-full self-start md:self-center">
             <div className="relative grid min-h-[23rem] w-full">
               <AnimatePresence initial={false} mode="sync" onExitComplete={handleExitComplete}>
                 {visibleCards.map((card, index) => (

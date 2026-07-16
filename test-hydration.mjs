@@ -4,14 +4,14 @@ import { chromium } from 'playwright';
   const browser = await chromium.launch();
   const page = await browser.newPage();
   const errors = [];
-  
-  page.on('console', msg => {
+
+  page.on('console', (msg) => {
     if (msg.type() === 'error') {
       errors.push(msg.text());
     }
   });
 
-  page.on('pageerror', exception => {
+  page.on('pageerror', (exception) => {
     errors.push(exception.message);
   });
 
@@ -19,10 +19,10 @@ import { chromium } from 'playwright';
   await page.waitForTimeout(2000); // wait for hydration
 
   if (errors.length > 0) {
-    console.log("ERRORS FOUND:");
-    errors.forEach(e => console.log("- " + e));
+    console.log('ERRORS FOUND:');
+    errors.forEach((e) => console.log('- ' + e));
   } else {
-    console.log("No errors found!");
+    console.log('No errors found!');
   }
   await browser.close();
 })();

@@ -13,6 +13,7 @@ export default function DynamicBackground() {
   const springY = useSpring(mouseY, { damping: 50, stiffness: 400 });
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -27,36 +28,37 @@ export default function DynamicBackground() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-paper">
-      
+    <div className="bg-paper pointer-events-none fixed inset-0 z-[-1] overflow-hidden">
       {/* 1. Ambient glowing orbs to add depth without distraction */}
       <motion.div
-        className="absolute top-[10%] left-[5%] w-[40vw] h-[40vw] rounded-full mix-blend-multiply opacity-30 blur-[100px]"
+        className="absolute top-[10%] left-[5%] h-[40vw] w-[40vw] rounded-full opacity-30 mix-blend-multiply blur-[100px]"
         style={{ background: 'radial-gradient(circle, #E0F2FE 0%, transparent 70%)' }}
         animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute bottom-[10%] right-[5%] w-[40vw] h-[40vw] rounded-full mix-blend-multiply opacity-30 blur-[100px]"
+        className="absolute right-[5%] bottom-[10%] h-[40vw] w-[40vw] rounded-full opacity-30 mix-blend-multiply blur-[100px]"
         style={{ background: 'radial-gradient(circle, #F3E8FF 0%, transparent 70%)' }}
         animate={{ x: [0, -40, 0], y: [0, 40, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
       />
 
       {/* 2. Base subtle dot matrix (low opacity) */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.25]"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(13, 14, 16, 0.2) 1.5px, transparent 1.5px)',
-          backgroundSize: '24px 24px'
+          backgroundImage:
+            'radial-gradient(circle, rgba(13, 14, 16, 0.2) 1.5px, transparent 1.5px)',
+          backgroundSize: '24px 24px',
         }}
       />
 
       {/* 3. Interactive Highlight dot matrix (revealed by mouse hover) */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 opacity-[0.85]"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(13, 14, 16, 0.4) 1.5px, transparent 1.5px)',
+          backgroundImage:
+            'radial-gradient(circle, rgba(13, 14, 16, 0.4) 1.5px, transparent 1.5px)',
           backgroundSize: '24px 24px',
           WebkitMaskImage: maskImageTemplate,
           maskImage: maskImageTemplate,
@@ -64,15 +66,14 @@ export default function DynamicBackground() {
       />
 
       {/* 4. Subtle slow moving scanline (technical vibe) */}
-      <motion.div 
-        className="absolute left-0 right-0 h-40 opacity-10 mix-blend-multiply"
+      <motion.div
+        className="absolute right-0 left-0 h-40 opacity-10 mix-blend-multiply"
         style={{
-          background: 'linear-gradient(to bottom, transparent, rgba(13, 14, 16, 0.2), transparent)'
+          background: 'linear-gradient(to bottom, transparent, rgba(13, 14, 16, 0.2), transparent)',
         }}
         animate={{ y: ['-100vh', '100vh'] }}
         transition={{ duration: 7, repeat: Infinity, ease: 'linear' }}
       />
-      
     </div>
   );
 }

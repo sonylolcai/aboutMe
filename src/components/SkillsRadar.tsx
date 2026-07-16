@@ -12,7 +12,8 @@ const skillsData = [
     content: {
       scope: 'React 18+ · Next.js App Router · TypeScript · Vue · TanStack Query · Zustand',
       decision: '为多租户 SaaS 设计混合渲染、缓存与跨模块状态策略。',
-      outcome: '核心页面 TTI 降低 40%；万级资产列表使用虚拟滚动后，渲染耗时降低 60%、内存降低 50%。',
+      outcome:
+        '核心页面 TTI 降低 40%；万级资产列表使用虚拟滚动后，渲染耗时降低 60%、内存降低 50%。',
     },
   },
   {
@@ -23,7 +24,8 @@ const skillsData = [
     content: {
       scope: 'Node.js · Next.js API Routes · FastAPI · PostgreSQL · REST · Docker · nginx',
       decision: '以 Node.js + PostgreSQL 交付审批流程引擎，并将前端体验与服务端可靠性一并设计。',
-      outcome: '高交易量场景中，Fetch Queue 以并发控制、请求去重与指数退避重试，将 API 成功率提升至 98%。',
+      outcome:
+        '高交易量场景中，Fetch Queue 以并发控制、请求去重与指数退避重试，将 API 成功率提升至 98%。',
     },
   },
   {
@@ -73,21 +75,26 @@ export default function SkillsRadar() {
     x: center.x + Math.cos(angle) * radius * scale,
     y: center.y + Math.sin(angle) * radius * scale,
   });
-  const evidencePath = skillsData.map((skill, index) => {
-    const point = getPoint(skill.angle, skill.score);
-    return `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`;
-  }).join(' ') + ' Z';
+  const evidencePath =
+    skillsData
+      .map((skill, index) => {
+        const point = getPoint(skill.angle, skill.score);
+        return `${index === 0 ? 'M' : 'L'} ${point.x} ${point.y}`;
+      })
+      .join(' ') + ' Z';
 
   return (
     <section className="bg-transparent py-[clamp(3.5rem,8vw,7rem)]">
       <div className="page-shell grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:items-center lg:gap-12 xl:gap-16">
         <div className="md:col-span-2 lg:col-span-1">
-          <p className="font-mono text-xs font-bold tracking-[0.1em] text-electric">ENGINEERING MAP</p>
-          <h2 className="mt-2 md:mt-5 text-2xl md:text-4xl font-bold leading-[1.1] tracking-[-0.03em] md:text-[clamp(2rem,3vw,3.5rem)]">
-            <ScrambleText text="能力不是自评，" /><br />
+          <p className="text-electric font-mono text-xs font-bold tracking-[0.1em]">
+            ENGINEERING MAP
+          </p>
+          <h2 className="mt-2 text-2xl leading-[1.1] font-bold tracking-[-0.03em] md:mt-5 md:text-4xl md:text-[clamp(2rem,3vw,3.5rem)]">
+            <ScrambleText text="能力不是自评，" />
+            <br />
             <ScrambleText text="而是可复核的工程证据。" delay={300} />
           </h2>
-
 
           <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="工程能力">
             {skillsData.map((skill) => {
@@ -110,67 +117,111 @@ export default function SkillsRadar() {
 
         <div className="mx-auto w-full max-w-[20rem] sm:max-w-sm lg:max-w-[28rem]">
           <svg viewBox="0 0 400 400" className="h-auto w-full" aria-label="工程能力地图">
-              {[1, 0.72, 0.44].map((scale) => (
-                <polygon
-                  key={scale}
-                  points={skillsData.map((skill) => {
+            {[1, 0.72, 0.44].map((scale) => (
+              <polygon
+                key={scale}
+                points={skillsData
+                  .map((skill) => {
                     const point = getPoint(skill.angle, scale);
                     return `${point.x},${point.y}`;
-                  }).join(' ')}
-                  fill="none"
+                  })
+                  .join(' ')}
+                fill="none"
+                stroke="#181A1C"
+                strokeWidth="1"
+                strokeOpacity="0.2"
+              />
+            ))}
+            {skillsData.map((skill) => {
+              const point = getPoint(skill.angle, 1);
+              return (
+                <line
+                  key={skill.id}
+                  x1={center.x}
+                  y1={center.y}
+                  x2={point.x}
+                  y2={point.y}
                   stroke="#181A1C"
                   strokeWidth="1"
                   strokeOpacity="0.2"
                 />
-              ))}
-              {skillsData.map((skill) => {
-                const point = getPoint(skill.angle, 1);
-                return <line key={skill.id} x1={center.x} y1={center.y} x2={point.x} y2={point.y} stroke="#181A1C" strokeWidth="1" strokeOpacity="0.2" />;
-              })}
-              <path d={evidencePath} fill="#9EBD4533" stroke="#181A1C" strokeWidth="2" />
-              {skillsData.map((skill) => {
-                const point = getPoint(skill.angle, skill.score);
-                const labelPoint = getPoint(skill.angle, 1.12);
-                const isActive = activeSkill === skill.id;
-                return (
-                  <g key={skill.id} className="cursor-pointer" onClick={() => setActiveSkill(skill.id)}>
-                    <circle cx={point.x} cy={point.y} r="7" fill={isActive ? '#9EBD45' : '#181A1C'} stroke="#F7F7F5" strokeWidth="2" />
-                    <text x={labelPoint.x} y={labelPoint.y + (skill.angle > 0 ? 8 : -2)} textAnchor="middle" className="select-none font-sans text-[13px] font-semibold" fill="#181A1C">{skill.label}</text>
-                  </g>
-                );
-              })}
-            </svg>
-          </div>
+              );
+            })}
+            <path d={evidencePath} fill="#9EBD4533" stroke="#181A1C" strokeWidth="2" />
+            {skillsData.map((skill) => {
+              const point = getPoint(skill.angle, skill.score);
+              const labelPoint = getPoint(skill.angle, 1.12);
+              const isActive = activeSkill === skill.id;
+              return (
+                <g
+                  key={skill.id}
+                  className="cursor-pointer"
+                  onClick={() => setActiveSkill(skill.id)}
+                >
+                  <circle
+                    cx={point.x}
+                    cy={point.y}
+                    r="7"
+                    fill={isActive ? '#9EBD45' : '#181A1C'}
+                    stroke="#F7F7F5"
+                    strokeWidth="2"
+                  />
+                  <text
+                    x={labelPoint.x}
+                    y={labelPoint.y + (skill.angle > 0 ? 8 : -2)}
+                    textAnchor="middle"
+                    className="font-sans text-[13px] font-semibold select-none"
+                    fill="#181A1C"
+                  >
+                    {skill.label}
+                  </text>
+                </g>
+              );
+            })}
+          </svg>
+        </div>
 
-          <div className="relative min-h-[520px] md:min-h-[420px]">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.article
-                key={activeData.id}
-                role="tabpanel"
-                className="border-t-2 border-obsidian pt-6 absolute inset-x-0 top-0"
-                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
-                transition={{ duration: reduceMotion ? 0 : 0.22, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <h3 className="text-2xl font-bold tracking-[-0.02em] md:text-3xl">{activeData.label}</h3>
-                <div className="mt-7 space-y-6">
-                  <div>
-                    <p className="font-mono text-xs font-bold tracking-[0.1em] text-electric">ENGINEERING SCOPE</p>
-                    <p className="mt-3 text-base font-semibold leading-7 text-obsidian">{activeData.content.scope}</p>
-                  </div>
-                  <div>
-                    <p className="font-mono text-xs font-bold tracking-[0.1em] text-electric">DESIGN DECISION</p>
-                    <p className="mt-3 text-base leading-8 text-muted">{activeData.content.decision}</p>
-                  </div>
-                  <div className="border border-acid bg-obsidian px-5 py-5 text-paper">
-                    <p className="font-mono text-xs font-bold tracking-[0.1em] text-acid">VERIFIED OUTCOME</p>
-                    <p className="mt-3 text-base leading-8">{activeData.content.outcome}</p>
-                  </div>
+        <div className="relative min-h-[520px] md:min-h-[420px]">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.article
+              key={activeData.id}
+              role="tabpanel"
+              className="border-obsidian absolute inset-x-0 top-0 border-t-2 pt-6"
+              initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: reduceMotion ? 0 : 0.22, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h3 className="text-2xl font-bold tracking-[-0.02em] md:text-3xl">
+                {activeData.label}
+              </h3>
+              <div className="mt-7 space-y-6">
+                <div>
+                  <p className="text-electric font-mono text-xs font-bold tracking-[0.1em]">
+                    ENGINEERING SCOPE
+                  </p>
+                  <p className="text-obsidian mt-3 text-base leading-7 font-semibold">
+                    {activeData.content.scope}
+                  </p>
                 </div>
-              </motion.article>
-            </AnimatePresence>
-          </div>
+                <div>
+                  <p className="text-electric font-mono text-xs font-bold tracking-[0.1em]">
+                    DESIGN DECISION
+                  </p>
+                  <p className="text-muted mt-3 text-base leading-8">
+                    {activeData.content.decision}
+                  </p>
+                </div>
+                <div className="border-acid bg-obsidian text-paper border px-5 py-5">
+                  <p className="text-acid font-mono text-xs font-bold tracking-[0.1em]">
+                    VERIFIED OUTCOME
+                  </p>
+                  <p className="mt-3 text-base leading-8">{activeData.content.outcome}</p>
+                </div>
+              </div>
+            </motion.article>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

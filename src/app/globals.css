@@ -1,16 +1,16 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme inline {
-  --color-paper: #F7F7F5;
-  --color-obsidian: #181A1C;
-  --color-acid: #9EBD45;
-  --color-electric: #52682A;
-  --color-neon: #9EBD45;
-  --color-muted: #62686E;
+  --color-paper: #f7f7f5;
+  --color-obsidian: #181a1c;
+  --color-acid: #9ebd45;
+  --color-electric: #52682a;
+  --color-neon: #9ebd45;
+  --color-muted: #62686e;
 
-  --font-sans: var(--font-noto-sans-sc), "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-mono: var(--font-geist-mono), "SFMono-Regular", Consolas, monospace;
-  --font-hand: var(--font-long-cang), "KaiTi", "STKaiti", cursive;
+  --font-sans: var(--font-noto-sans-sc), 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: var(--font-geist-mono), 'SFMono-Regular', Consolas, monospace;
+  --font-hand: var(--font-long-cang), 'KaiTi', 'STKaiti', cursive;
 }
 
 @layer base {
@@ -23,14 +23,16 @@
     text-rendering: optimizeLegibility;
   }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     cursor: none !important;
   }
 
   body {
     background-color: var(--color-paper);
     color: var(--color-obsidian);
-    font-family: var(--font-noto-sans-sc), "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-family: var(--font-noto-sans-sc), 'PingFang SC', 'Microsoft YaHei', sans-serif;
     font-optical-sizing: auto;
   }
 
@@ -46,7 +48,7 @@
   }
 
   body::before {
-    content: "";
+    content: '';
     position: fixed;
     inset: 0;
     pointer-events: none;
@@ -58,7 +60,7 @@
 
 @layer utilities {
   .font-display {
-    font-family: var(--font-geist), "Arial Narrow", sans-serif;
+    font-family: var(--font-geist), 'Arial Narrow', sans-serif;
   }
 
   .page-shell {
@@ -75,15 +77,17 @@
     border: 2px solid var(--color-obsidian);
     border-radius: 4px;
   }
-  
+
   .brutal-shadow {
     box-shadow: 4px 4px 0 0 var(--color-obsidian);
   }
-  
+
   .brutal-shadow-hover:hover {
     box-shadow: 5px 5px 0 0 var(--color-obsidian);
     transform: translate(-2px, -2px);
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    transition:
+      transform 0.2s ease-out,
+      box-shadow 0.2s ease-out;
   }
 
   .note-paper {
@@ -101,7 +105,7 @@
   }
 
   .note-paper::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     z-index: -1;
@@ -110,12 +114,14 @@
     background-image:
       radial-gradient(circle at 18% 23%, rgb(24 26 28 / 10%) 0 0.45px, transparent 0.6px),
       radial-gradient(circle at 74% 67%, rgb(24 26 28 / 8%) 0 0.5px, transparent 0.68px);
-    background-size: 7px 9px, 11px 13px;
+    background-size:
+      7px 9px,
+      11px 13px;
     mix-blend-mode: multiply;
   }
 
   .note-paper::after {
-    content: "";
+    content: '';
     position: absolute;
     right: -2px;
     bottom: -2px;

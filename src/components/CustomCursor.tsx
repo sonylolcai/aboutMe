@@ -10,6 +10,7 @@ export default function CustomCursor() {
   const [isMouseDown, setIsMouseDown] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -28,7 +29,7 @@ export default function CustomCursor() {
 
     const onMouseLeave = () => setIsVisible(false);
     const onMouseEnter = () => setIsVisible(true);
-    
+
     const onMouseDown = () => setIsMouseDown(true);
     const onMouseUp = () => setIsMouseDown(false);
 
@@ -42,12 +43,14 @@ export default function CustomCursor() {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const computedStyle = window.getComputedStyle(target);
-      
+
       // If hovering over text elements, buttons, or links, apply hover effect
-      const isText = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'A', 'BUTTON'].includes(target.tagName);
+      const isText = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'A', 'BUTTON'].includes(
+        target.tagName,
+      );
       // Or if the cursor is pointer
       const isPointer = computedStyle.cursor === 'pointer';
-      
+
       if (isText || isPointer) {
         setIsHoveringText(true);
       } else {
@@ -74,7 +77,7 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+      className="pointer-events-none fixed top-0 left-0 z-[9999] mix-blend-difference"
       style={{
         x: springX,
         y: springY,
@@ -86,9 +89,9 @@ export default function CustomCursor() {
           scale: isHoveringText ? 1.5 : 1,
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        className="relative w-10 h-10 flex items-center justify-center text-white"
+        className="relative flex h-10 w-10 items-center justify-center text-white"
       >
-        <svg viewBox="0 0 100 100" className="w-full h-full" fill="currentColor">
+        <svg viewBox="0 0 100 100" className="h-full w-full" fill="currentColor">
           {/* Main Pad (Perfectly rounded composite shape) */}
           <g>
             {/* Upper body */}
@@ -101,18 +104,42 @@ export default function CustomCursor() {
             <circle cx="50" cy="76" r="14" />
           </g>
           {/* 4 Toes without claws */}
-          <motion.ellipse cx="22" cy="38" rx="8" ry="12" transform="rotate(-30 22 38)" 
-            animate={{ scale: toeScale, y: isMouseDown ? 4 : 0, x: isMouseDown ? 4 : 0 }} 
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }} />
-          <motion.ellipse cx="38" cy="18" rx="8" ry="12" transform="rotate(-10 38 18)" 
-            animate={{ scale: toeScale, y: isMouseDown ? 6 : 2, x: isMouseDown ? 2 : 0 }} 
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }} />
-          <motion.ellipse cx="62" cy="18" rx="8" ry="12" transform="rotate(10 62 18)" 
-            animate={{ scale: toeScale, y: isMouseDown ? 6 : 2, x: isMouseDown ? -2 : 0 }} 
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }} />
-          <motion.ellipse cx="78" cy="38" rx="8" ry="12" transform="rotate(30 78 38)" 
-            animate={{ scale: toeScale, y: isMouseDown ? 4 : 0, x: isMouseDown ? -4 : 0 }} 
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }} />
+          <motion.ellipse
+            cx="22"
+            cy="38"
+            rx="8"
+            ry="12"
+            transform="rotate(-30 22 38)"
+            animate={{ scale: toeScale, y: isMouseDown ? 4 : 0, x: isMouseDown ? 4 : 0 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          />
+          <motion.ellipse
+            cx="38"
+            cy="18"
+            rx="8"
+            ry="12"
+            transform="rotate(-10 38 18)"
+            animate={{ scale: toeScale, y: isMouseDown ? 6 : 2, x: isMouseDown ? 2 : 0 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          />
+          <motion.ellipse
+            cx="62"
+            cy="18"
+            rx="8"
+            ry="12"
+            transform="rotate(10 62 18)"
+            animate={{ scale: toeScale, y: isMouseDown ? 6 : 2, x: isMouseDown ? -2 : 0 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          />
+          <motion.ellipse
+            cx="78"
+            cy="38"
+            rx="8"
+            ry="12"
+            transform="rotate(30 78 38)"
+            animate={{ scale: toeScale, y: isMouseDown ? 4 : 0, x: isMouseDown ? -4 : 0 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          />
         </svg>
       </motion.div>
     </motion.div>
