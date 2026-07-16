@@ -1,0 +1,14 @@
+[pr_reviewer]
+extra_instructions = """
+作为代码审查者，请你严格遵守以下项目特定的团队规范（基于我们的 ESLint 和架构约束）：
+1. 【架构理念】本项目采用 Next.js App Router 架构。请优先审查是否有滥用 "use client" 的情况，鼓励尽可能多地使用 Server Components。
+2. 【类型安全】严禁出现 `any` 类型，必须定义完整的 TypeScript Interface 或 Type。
+3. 【样式规范】项目中使用了 Tailwind CSS，如果发现类名组合过于冗长且重复出现，请建议将其抽象为组件或统一提取。
+4. 【代码整洁】不要提出任何关于空格、换行、分号、单双引号的代码格式化建议，这部分完全由 Prettier 负责。
+"""
+
+[pr_code_suggestions]
+extra_instructions = """
+1. 优先关注 Server Components 的数据获取模式是否安全高效。
+2. 优先提出能优化运行时性能或内存泄漏的建议。
+"""

@@ -21,8 +21,8 @@ jobs:
         env:
           DEEPSEEK.KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          github_action_config.auto_review: "true"
-          github_action_config.auto_describe: "true"
-          github_action_config.auto_improve: "true"
-          CONFIG.MODEL: "deepseek/deepseek-chat"
+          github_action_config.auto_review: 'true'
+          github_action_config.auto_describe: 'true'
+          github_action_config.auto_improve: 'true'
+          CONFIG.MODEL: 'deepseek/deepseek-chat'
           CONFIG.FALLBACK_MODELS: '["deepseek/deepseek-chat"]'
