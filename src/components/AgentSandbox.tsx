@@ -116,7 +116,7 @@ export default function AgentSandbox() {
                           <ScrambleText text={active.title} />
                         </h3>
                       </div>
-                      <p className="text-sm md:text-base text-muted leading-relaxed font-mono pl-1">
+                      <p className="text-sm md:text-base text-muted leading-relaxed pl-1">
                         # {active.summary}
                       </p>
                     </div>
@@ -124,7 +124,7 @@ export default function AgentSandbox() {
                     <div className="space-y-5 md:space-y-8">
                       <div className="relative pl-3 md:pl-4 border-l-2 border-obsidian/20">
                         <p className="font-mono text-[10px] md:text-xs font-bold tracking-[0.1em] text-muted mb-1.5 md:mb-2">// EXECUTION_STRATEGY</p>
-                        <p className="text-xs md:text-base leading-5 md:leading-8 font-mono">{active.detail}</p>
+                        <p className="text-xs md:text-base leading-5 md:leading-8">{active.detail}</p>
                       </div>
                       
                       <div className="relative pl-3 md:pl-4 border-l-2 border-electric">

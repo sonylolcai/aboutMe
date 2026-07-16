@@ -8,31 +8,31 @@ const cards = [
   {
     id: 1,
     title: '01 // ENGINEER_PROFILE',
-    content: '蔡璐阳（Sonny）｜9 年以上高级全栈工程师。以 React / Next.js 架构为基座，协同 Node.js 与 Python 构建高可靠的企业级 SaaS。深耕金融科技领域，主导过借贷审批、发卡系统与数字资产交易所等核心业务从架构设计到生产部署的完整交付。',
+    content: '蔡璐阳（Sonny）｜9 年以上全栈交付经验。以 React / TypeScript / Next.js 为前端架构基座，能够协同 Node.js、Python 完成企业级 SaaS 从业务流程到生产部署的完整交付。',
     img: '/me/assets/real-z.webp',
   },
   {
     id: 2,
     title: '02 // SYSTEMS_AND_PERFORMANCE',
-    content: '应对金融级高频交易与复杂多租户权限挑战：通过 Server Components 与多级缓存策略，将核心页面 TTI（可交互时间）降低 40%；针对密集型数据面板，落地虚拟滚动与流式渲染，让万级资产列表渲染耗时直降 60%。',
+    content: '处理多租户权限、审批与对账等复杂业务，也处理高频实时数据与性能瓶颈：以混合渲染、缓存策略和虚拟滚动，将核心页面 TTI 降低 40%，万级列表渲染耗时降低 60%。',
     img: '/me/assets/real-c.webp',
   },
   {
     id: 3,
     title: '03 // AGENT_ENGINEERING',
-    content: '不止于模型调用，更专注于 AI 的企业级落地：基于 LangGraph 与 MCP 工具链编排多轮流式交互，构建基于混合检索的 RAG 管线。将 AI 问答与自然语言操作精准、可控地接入复杂的业务流程中。',
+    content: '不是停留在模型接入：完成 LangGraph 编排、SSE 多轮交互、MCP 工具调用与 Chroma 混合检索 RAG 管线，并用 RAGAS 指标持续评估检索质量。',
     img: '/me/assets/real-pc.webp',
   },
   {
     id: 4,
     title: '04 // DELIVERY_SYSTEM',
-    content: '作为前端负责人，带领 6 人团队成功交付网页与移动端共 5 个企业级项目。通过从零搭建组件库、推行 TypeScript 严格模式与 CI/CD 自动化体系，使跨项目开发效率跃升 60%，线上 Bug 率大幅下降 70%。',
+    content: '带领 6 人前端团队交付网页端、移动端与小程序共 5 个企业级项目。通过设计系统、TypeScript、测试与 CI/CD，把经验沉淀为可复用的工程体系。',
     img: '/me/assets/real-snow.webp',
   },
   {
     id: 5,
     title: '05 // OFFLINE_MODE',
-    content: 'System Offline：工程世界之外，我是羽毛球狂热爱好者，以及两只猫的专属铲屎官。',
+    content: '工程之外：滑雪、羽毛球与两只猫。',
     img: '/me/assets/real-cat.webp',
   }
 ];
