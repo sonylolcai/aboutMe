@@ -16,7 +16,7 @@ import {
 const projects = [
   {
     name: 'PA_Agent.app',
-    href: 'https://for-one-dream.cloud/pa-agent/',
+    href: 'https://for-one-dream.cloud/terminal/',
     description: 'A 股 AI 量化分析平台：K 线渲染、两阶段 SSE 推理、多 Agent 决策链与滚动回测。',
   },
   {
