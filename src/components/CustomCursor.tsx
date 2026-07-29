@@ -6,6 +6,7 @@ import { motion, useSpring, useMotionValue } from 'framer-motion';
 export default function CustomCursor() {
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isOverMacScreen, setIsOverMacScreen] = useState(false);
   const [isHoveringText, setIsHoveringText] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
 
@@ -24,6 +25,10 @@ export default function CustomCursor() {
     const onMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX - 20); // Center the 40x40 paw
       cursorY.set(e.clientY - 20);
+
+      setIsOverMacScreen(
+        e.target instanceof Element && Boolean(e.target.closest('[data-native-cursor-surface]')),
+      );
       if (!isVisible) setIsVisible(true);
     };
 
@@ -77,11 +82,12 @@ export default function CustomCursor() {
 
   return (
     <motion.div
+      data-custom-cursor
       className="pointer-events-none fixed top-0 left-0 z-[9999] mix-blend-difference"
       style={{
         x: springX,
         y: springY,
-        opacity: isVisible ? 1 : 0,
+        opacity: isVisible && !isOverMacScreen ? 1 : 0,
       }}
     >
       <motion.div

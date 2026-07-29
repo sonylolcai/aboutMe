@@ -92,7 +92,10 @@ export default function MacSimulator() {
           className="relative mx-auto aspect-[4/5] w-full max-w-[68rem] sm:aspect-[10/7]"
         >
           <div className="brutal-border brutal-shadow absolute inset-0 flex flex-col bg-[#E7E8E2] p-3 pb-10 sm:p-5 sm:pb-12">
-            <div className="bg-obsidian brutal-border relative flex-1 overflow-hidden">
+            <div
+              data-native-cursor-surface
+              className="bg-obsidian brutal-border relative flex-1 overflow-hidden"
+            >
               <div
                 className={`bg-obsidian absolute inset-0 z-20 transition-opacity duration-500 ${macState === 'off' ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
               />

@@ -29,6 +29,13 @@
     cursor: none !important;
   }
 
+  [data-native-cursor-surface],
+  [data-native-cursor-surface] *,
+  [data-native-cursor-surface]::before,
+  [data-native-cursor-surface]::after {
+    cursor: auto !important;
+  }
+
   body {
     background-color: var(--color-paper);
     color: var(--color-obsidian);
